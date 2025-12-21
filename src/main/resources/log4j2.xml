@@ -12,11 +12,15 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN}" charset="UTF-8"/>
         </Console>
+        <File name="File" fileName="/tmp/spark-app.log">
+            <PatternLayout pattern="${LOG_PATTERN}" charset="UTF-8"/>
+        </File>
     </Appenders>
 
     <Loggers>
         <Root level="${root.level}">
-            <AppenderRef ref="Console"/>
+            <!--<AppenderRef ref="Console"/>-->
+            <AppenderRef ref="File"/>
         </Root>
     </Loggers>
 </Configuration>
