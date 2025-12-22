@@ -2,7 +2,7 @@
 setlocal
 
 set APP_JAR=D:\ideaSource\spark-demos\target\spark-demos-1.0.0.jar
-set MAIN_CLASS=com.github.liyibo1110.spark.operator.UnionDemo
+set MAIN_CLASS=com.github.liyibo1110.spark.operator.CoGroupDemo
 set LOG4J_CONF=D:\ideaSource\spark-demos\src\main\resources\log4j2.xml
 
 set HADOOP_CONF_DIR=D:\software\hadoop3\linux-config

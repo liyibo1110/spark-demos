@@ -1,0 +1,5 @@
+Hadoop is an open source framework for distributed storage and processing of big data.
+MapReduce is a programming model used by Hadoop to process large data sets.
+WordCount is the most classic example when learning MapReduce.
+Hadoop Hadoop Hadoop MapReduce MapReduce data data data.
+Learning Hadoop helps understand big data processing systems.
