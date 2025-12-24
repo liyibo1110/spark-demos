@@ -29,14 +29,6 @@ public class AccumulatorValueDemo {
         ds.foreach((ForeachFunction<Integer>)n -> accumulator.add(n));
         // 读取累加器的值（只能在Driver端读）
         logger.info("Accumulator result: {}", accumulator.value());
-
-        // 必须要等待计算完成，不然Driver就直接结束运行了
-        try {
-            Thread.sleep(5000 * 5000 * 5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
         spark.stop();
     }
 }
