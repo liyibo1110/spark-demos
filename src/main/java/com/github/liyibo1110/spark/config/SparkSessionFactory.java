@@ -22,6 +22,18 @@ public class SparkSessionFactory {
                 .getOrCreate();
     }
 
+    /**
+     * 构建SparkSession实例（附带hive）
+     * @param appName application的名称
+     * @return SparkSession实例
+     */
+    public static SparkSession createWithHive(String appName) {
+        return SparkSession.builder()
+                .appName(appName)
+                .enableHiveSupport()
+                .getOrCreate();
+    }
+
     public static void main(String[] args) {
         logger.info("Factory已启动");
     }

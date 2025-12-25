@@ -1,7 +1,6 @@
 package com.github.liyibo1110.spark.sql;
 
 import com.github.liyibo1110.spark.config.SparkSessionFactory;
-import com.github.liyibo1110.spark.sharedvariables.BroadCastValueDemo;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -10,14 +9,20 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
-import static org.apache.spark.sql.functions.*;
+import static org.apache.spark.sql.functions.avg;
+import static org.apache.spark.sql.functions.col;
+import static org.apache.spark.sql.functions.count;
+import static org.apache.spark.sql.functions.current_timestamp;
+import static org.apache.spark.sql.functions.lit;
+import static org.apache.spark.sql.functions.round;
 
 /**
+ * 从mysql中读取数据并统计聚合，最后回写
  * @author liyibo
  * @date 2025-12-23 14:24
  */
-public class JDBCDataSourceDemo {
-    private static final Logger logger = LoggerFactory.getLogger(BroadCastValueDemo.class);
+public class JdbcDataSourceDemo {
+    private static final Logger logger = LoggerFactory.getLogger(JdbcDataSourceDemo.class);
 
     public void run(SparkSession spark) {
         /** 1、JDBC基本配置 */
@@ -55,7 +60,7 @@ public class JDBCDataSourceDemo {
     public static void main(String[] args) {
         SparkSession spark = SparkSessionFactory.create("JdbcUserStatDemo");
         try {
-            new JDBCDataSourceDemo().run(spark);
+            new JdbcDataSourceDemo().run(spark);
         } finally {
             spark.stop();
         }
