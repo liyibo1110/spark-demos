@@ -24,12 +24,13 @@ public class JsonDataSourceDemo {
     public void run(SparkSession spark) {
         /** 1、读取文件 */
         Dataset<Row> ds = spark.read().format("json").load(Constants.HDFS_DATA_PREFIX + "people.json");
+        logger.info("===== people schema =====");
         ds.printSchema();
         /** 2、创建临时视图 */
         ds.createOrReplaceTempView("people");
         /** 3、使用Spark SQL查询 */
         Dataset<Row> teenagers = spark.sql("SELECT name FROM people WHERE age BETWEEN 13 AND 19");
-        String url = "jdbc:mysql://192.168.1.130:3307/spark_demo?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai";
+        logger.info("===== teenagers show =====");
         teenagers.show(false);
         /** 4、再尝试直接在内存构造Json数据 */
         List<String> personJsonList = Arrays.asList(
@@ -42,6 +43,7 @@ public class JsonDataSourceDemo {
         /** 5、创建新的临时视图 */
         studentDf.createOrReplaceTempView("student");
         Dataset<Row> students = spark.sql("SELECT * FROM student");
+        logger.info("===== students show =====");
         students.show(false);
         /** 6、回写HDFS */
         students.write().mode(SaveMode.Overwrite).format("json").save(Constants.HDFS_DATA_PREFIX + "student");
